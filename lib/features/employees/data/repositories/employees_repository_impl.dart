@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:team_track_app/core/errors/exceptions.dart';
 import 'package:team_track_app/core/errors/failure.dart';
 import 'package:team_track_app/features/employees/data/datasources/local/employees_local_datasources.dart';
+import 'package:team_track_app/features/employees/data/models/employee_model.dart';
 import '../../../../core/network/network_info.dart';
 import '../../domain/repositories/employee_repository.dart';
 import '../datasources/remote/employees_remote_datasources.dart';
@@ -18,7 +19,7 @@ class EmployeeRepositoryImpl implements EmployeeRepository {
   });
 
   @override
-  Future<Either<Failure, List>> getAllEmployees() async {
+  Future<Either<Failure, List<EmployeeModel>>> getAllEmployees() async {
     if (await networkInfo.isConnected) {
       try {
         //
