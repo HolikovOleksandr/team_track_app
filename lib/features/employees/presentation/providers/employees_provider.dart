@@ -1,10 +1,8 @@
 import 'package:data_connection_checker_nulls/data_connection_checker_nulls.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:team_track_app/core/constants/app_strings.dart';
 import 'package:team_track_app/core/errors/failure.dart';
 import 'package:team_track_app/core/network/network_info.dart';
-import 'package:team_track_app/core/parameters/api_parameters.dart';
 import 'package:team_track_app/features/employees/data/datasources/local/employees_local_datasources_impl.dart';
 import 'package:team_track_app/features/employees/data/datasources/remote/employees_remote_datasources_impl.dart';
 import 'package:team_track_app/features/employees/data/models/employee_model.dart';
@@ -27,8 +25,8 @@ class EmployeesProvider extends ChangeNotifier {
       networkInfo: NetworkInfoImpl(DataConnectionChecker()),
     );
 
-    final failureOrEmployees = await GetAllEmployees(repository: repository)
-        .execute(ApiMethodParameter(apiMethod: AppStrings.getAll));
+    final failureOrEmployees =
+        await GetAllEmployees(repository: repository).execute();
 
     failureOrEmployees.fold(
       (fail) {

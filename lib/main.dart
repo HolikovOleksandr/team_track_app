@@ -1,48 +1,34 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:team_track_app/features/employees/presentation/providers/employees_provider.dart';
+import 'package:team_track_app/features/employees/presentation/screens/home_screen.dart';
 
 void main() {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Team Truck',
-      theme: ThemeData.dark(
-        useMaterial3: true,
-      ).copyWith(
-        scaffoldBackgroundColor: Color(0xFF303030),
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: Theme.of(context).colorScheme.primary,
-          primary: Color(0xFF4AEBAD),
-        ),
-      ),
-      home: const HomeScreen(),
-    );
-  }
+  State<MyApp> createState() => _MyAppState();
 }
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+class _MyAppState extends State<MyApp> {
 
-  @override
-  State<HomeScreen> createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.primary,
-        centerTitle: true,
-        title: const Text('Team Truck'),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => EmployeesProvider()),
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Employees',
+        theme: ThemeData(useMaterial3: true),
+        home: const HomeScreen(),
       ),
     );
   }

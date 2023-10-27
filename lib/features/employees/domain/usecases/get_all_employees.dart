@@ -3,15 +3,14 @@ import 'package:team_track_app/features/employees/data/models/employee_model.dar
 import 'package:team_track_app/features/employees/domain/repositories/employee_repository.dart';
 import 'package:team_track_app/core/errors/failure.dart';
 import 'package:team_track_app/core/usecase/usecase.dart';
-import '../../../../core/parameters/api_parameters.dart';
 
-class GetAllEmployees extends UseCase<List<EmployeeModel>, Parameters> {
+class GetAllEmployees extends UseCase<List<EmployeeModel>, void> {
   final EmployeeRepository repository;
 
   GetAllEmployees({required this.repository});
 
   @override
-  Future<Either<Failure, List<EmployeeModel>>> execute(Parameters params) {
+  Future<Either<Failure, List<EmployeeModel>>> execute([void param]) {
     return repository.getAllEmployees();
   }
 }

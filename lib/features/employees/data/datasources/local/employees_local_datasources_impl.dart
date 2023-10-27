@@ -16,7 +16,6 @@ class EmployeeLocalDatasoucesImpl implements EmployeeLocalDatasouce {
   Future<void> cacheEmployees(List<EmployeeModel> employees) {
     var employeeList = employees.map((e) => e.toMap()).toList();
     var data = json.encode(employeeList);
-
     return sharedPreferences.setString(AppStrings.cachedEmployees, data);
   }
 
