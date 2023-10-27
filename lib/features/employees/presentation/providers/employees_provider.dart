@@ -17,7 +17,6 @@ class EmployeesProvider extends ChangeNotifier {
   EmployeesProvider({this.employees, this.failure});
 
   void eitherFailureOrEmployees() async {
-    //
     EmployeeRepositoryImpl repository = EmployeeRepositoryImpl(
       localDatasouce: EmployeeLocalDatasoucesImpl(
           sharedPreferences: await SharedPreferences.getInstance()),
